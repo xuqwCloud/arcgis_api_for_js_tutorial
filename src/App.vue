@@ -1,18 +1,28 @@
 <script setup>
 import { onMounted } from "vue"
 import Map from "@arcgis/core/Map.js"
-import MapView from "@arcgis/core/views/MapView.js"
+import SceneView from "@arcgis/core/views/SceneView.js"
 
 onMounted(() => {
   const map = new Map({
     basemap: "topo-vector",
   })
-  const view = new MapView({
+  const view = new SceneView({
     container: "map",
     map: map,
-    zoom: 4,
-    center: [15, 65],
+    // center: [-112, 38],
+    // zoom: 5,
+    camera: {
+      position: {
+        x: -112, // lon
+        y: 38, // lat
+        z: 10654, // elevation in meters
+      },
+      tilt: 45,
+    },
   })
+
+  view.ui.components = []
 })
 </script>
 
